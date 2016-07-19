@@ -35,10 +35,10 @@ function main() {
   regionButton.onclick = function( event ) {
     event.preventDefault( event );
     var currentRegion = document.getElementById( "region-selector" ).value;
-    tryThis( currentRegion )
+    regionSelect( currentRegion )
   }
 
-  function tryThis( currentRegion ) {
+  function regionSelect( currentRegion ) {
 
     countries.forEach( function( country ) {
       var option = document.createElement( "option" );
