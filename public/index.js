@@ -54,13 +54,18 @@ function main() {
 
     var li = document.createElement('li');
     var hr = document.createElement('hr');
+    var he = document.createElement( "h2" );
+
     li.innerHTML =  "<h3>Name:</h3> " + found.name + " <h3>Capital:</h3> " + found.capital + " <h3>Pop:</h3> " + found.population
+    he.innerHTML = "Neighbours:"
+
     ul.appendChild(li);
     li.appendChild(hr);
+    li.appendChild( he );
+
 
     localStorage.setItem( "country_app_list" , JSON.stringify( found ) );
     borderCountries( found.borders )
-    console.log( found.borders )
    }
 
    function borderCountries( countryBorders ) {
@@ -70,7 +75,6 @@ function main() {
         return country.alpha3Code === border;
       });
       borders.push( neighbour );
-      // console.log( neighbour )
     } 
     borderCheck( borders )
    }
@@ -86,9 +90,9 @@ function main() {
       var hr = document.createElement( "hr" );
       li.innerHTML = "<h4>Name:</h4>" + country[0].name + "<h4>Capital:</h4>" + country[0].capital + "<h4>Pop: </h4>" + country[0].population;
       borderList.appendChild( li );
+      borderList.appendChild( hr );
     }
    }
-
 
 }
 
