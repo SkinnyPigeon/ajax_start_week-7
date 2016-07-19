@@ -35,18 +35,19 @@ function main() {
   regionButton.onclick = function( event ) {
     event.preventDefault( event );
     var currentRegion = document.getElementById( "region-selector" ).value;
-    // tryThis( currentRegion )
+    tryThis( currentRegion )
   }
 
-  // function tryThis( currentRegion ) {
+  function tryThis( currentRegion ) {
+
     countries.forEach( function( country ) {
-      // if( country.region === currentRegion )
-        var option = document.createElement( "option" );
-      option.innerHTML = country.name;
+      var option = document.createElement( "option" );
+      if( country.region === currentRegion )   
+        option.innerHTML = country.name;
       var select = document.getElementById( "selector" );
       select.appendChild( option );
     } )
-  // }
+  }
 
 
   addedCountry = JSON.parse( localStorage.getItem( "country_app_list" ) ) || [];
