@@ -39,7 +39,6 @@ function main() {
   }
 
   function regionSelect( currentRegion ) {
-
     countries.forEach( function( country ) {
       var option = document.createElement( "option" );
       if( country.region === currentRegion )   
