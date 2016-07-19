@@ -60,7 +60,7 @@ function main() {
 
     localStorage.setItem( "country_app_list" , JSON.stringify( found ) );
     borderCountries( found.borders )
-    // console.log( found.borders )
+    console.log( found.borders )
    }
 
    function borderCountries( countryBorders ) {
@@ -70,20 +70,21 @@ function main() {
         return country.alpha3Code === border;
       });
       borders.push( neighbour );
+      // console.log( neighbour )
     } 
     borderCheck( borders )
    }
 
    function borderCheck( borders ) {
     var borderList = document.getElementById( "border-list" )
-    while (borderList.firstCild) {
-      borderList.removeChild( borderList.firstChild);
+    while (borderList.childNodes[0] != null ) {
+      borderList.removeChild( borderList.firstChild );
     }
 
     for( country of borders) {
       var li = document.createElement( "li" );
       var hr = document.createElement( "hr" );
-      li.innerHTML = "<h4>Name:</h4> " + country[0].name + "<h4>Capital:</h4> " + country[0].capital + "<h4>Pop:</h4> " + country[0].population;
+      li.innerHTML = "<h4>Name:</h4>" + country[0].name + "<h4>Capital:</h4>" + country[0].capital + "<h4>Pop: </h4>" + country[0].population;
       borderList.appendChild( li );
     }
    }
