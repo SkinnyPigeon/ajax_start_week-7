@@ -17,6 +17,14 @@ window.onload = function() {
 }
 
 function main() {
+
+  countries.forEach( function( country ) {
+    var option = document.createElement( "option" );
+    option.innerHTML = country.region;
+    var select = document.getElementById( "region-selector" );
+    select.appendChild( option )
+  })
+
   countries.forEach( function( country ) {
     var option = document.createElement( "option" );
     option.innerHTML = country.name;
@@ -62,7 +70,6 @@ function main() {
     ul.appendChild(li);
     li.appendChild(hr);
     li.appendChild( he );
-
 
     localStorage.setItem( "country_app_list" , JSON.stringify( found ) );
     borderCountries( found.borders )
