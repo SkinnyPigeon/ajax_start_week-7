@@ -35,15 +35,18 @@ function main() {
   regionButton.onclick = function( event ) {
     event.preventDefault( event );
     var currentRegion = document.getElementById( "region-selector" ).value;
+    // tryThis( currentRegion )
   }
 
-  countries.forEach( function( country ) {
-    // if( country.region === currentRegion )
-      var option = document.createElement( "option" );
-    option.innerHTML = country.name;
-    var select = document.getElementById( "selector" );
-    select.appendChild( option );
-  } )
+  // function tryThis( currentRegion ) {
+    countries.forEach( function( country ) {
+      // if( country.region === currentRegion )
+        var option = document.createElement( "option" );
+      option.innerHTML = country.name;
+      var select = document.getElementById( "selector" );
+      select.appendChild( option );
+    } )
+  // }
 
 
   addedCountry = JSON.parse( localStorage.getItem( "country_app_list" ) ) || [];
@@ -51,6 +54,7 @@ function main() {
 
   var button = document.getElementById( "select" );
   var form = document.getElementById( "drop-down" );
+
   button.onclick = function( event ) {
     event.preventDefault( event )
     var current = document.getElementById( "selector" ).value
