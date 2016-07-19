@@ -10,7 +10,6 @@ window.onload = function() {
     if( request.status === 200 ) {
       var jsonString = request.responseText;
       countries = JSON.parse( jsonString );
-      // var country = countries[0];
     } 
     main()
   }
@@ -25,12 +24,14 @@ function main() {
     select.appendChild( option );
   } )
 
+  addedCountry = JSON.parse( localStorage.getItem( "country_app_list" ) ) || [];
+  createEntry( addedCountry )
+
   var button = document.getElementById( "select" );
   var form = document.getElementById( "drop-down" );
   button.onclick = function( event ) {
     event.preventDefault( event )
     var current = document.getElementById( "selector" ).value
-    // console.log( current )
     displayCountry( current )
   }
 
@@ -38,25 +39,44 @@ function main() {
     var found = countries.filter( function( country ) {
       return country.name === current; 
     } )
-      createEntry( found[0] );
-
+    createEntry( found[0] );
   }
 
-  var createEntry = function( found ) {
-    var name = document.createElement( "li" )
-    var capital = document.createElement( "li" )
-    var population = document.createElement( "li" )
-    var hr = document.createElement( "hr" )
-    name.innerHTML = "Name: " + found.name
-    capital.innerHTML = "Capital: " + found.capital
-    population.innerHTML = "Population: " + found.population;
-    var ul = document.getElementById( "country-list" );
-    ul.appendChild( name )
-    ul.appendChild( capital )
-    ul.appendChild( population )
-    ul.appendChild( hr )
+  function createEntry( found ){
+     var ul = document.getElementById('country-list');
+     if(ul.childNodes[0]){
+       ul.removeChild(ul.childNodes[0]);
+     }
+     countryCard( ul, found )
+   }
 
-  }
+   function countryCard( ul, found ) {
+
+    var li = document.createElement('li');
+    var hr = document.createElement('hr');
+    li.innerHTML =  "<h3>Name:</h3> " + found.name + " <h3>Capital:</h3> " + found.capital + " <h3>Pop:</h3> " + found.population
+    ul.appendChild(li);
+    li.appendChild(hr);
+
+    localStorage.setItem( "country_app_list" , JSON.stringify( found ) );
+    borderCountries( found.borders )
+    // console.log( found.borders )
+   }
+
+   function borderCountries( countryBorders ) {
+    var borders = [];
+    for( border of countryBorders ) {
+      var neighbour = countries.filter( function( country ) {
+        return country.alpha3Code === border;
+      });
+      borders.push( neighbour );
+    } 
+   }
+
+   function borderCheck( borders ) {
+    for( country of borders ) {
+    }
+   }
 
 }
 
