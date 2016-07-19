@@ -1,0 +1,8 @@
+body {
+  background-color: #c3d5a0;
+  font-family: helvetica;
+}
+
+#country-list {
+  list-style: none;
+}
